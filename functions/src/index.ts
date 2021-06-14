@@ -13,17 +13,9 @@ export const userCreated = functions.auth
       await userCreatedFunction(user, fireDb);
     });
 
-/* On bot created
-export const botCreated = functions.firestore
-    .document("bots")
-    .onWrite(async (change, context) => {
-      await botCreatedFunction(change, context);
-    });
- */
-
 /* On question created  */
 export const questionCreated = functions.firestore
-    .document("bots/{botId}/queries")
-    .onWrite(async (change, context) => {
-      await questionCreatedFunction(change, context);
+    .document("bots/{botId}/questions/{questionId}")
+    .onWrite( async (change, context) => {
+      await questionCreatedFunction(change, context, fireDb);
     });
